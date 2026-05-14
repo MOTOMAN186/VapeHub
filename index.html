@@ -62,7 +62,7 @@
 
     <div id="pay-select-screen" class="screen">
         <h1>СПОСОБ ОПЛАТЫ</h1>
-        <div class="pay-option" onclick="showPayment('tbank')"><h3>💳 Оплата картой</h3><p>Быстрая оплата через Т-Банк</p></div>
+        <div class="pay-option" onclick="showPayment('tbank')"><h3>💳 Оплата картой</h3><p>Быстрая оплата через приложение банка</p></div>
         <div class="pay-option" onclick="showPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата по QR через любой банк</p></div>
         <div class="pay-option" onclick="showPayment('card')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
         <button style="background:none; color: gray; border:none; margin-top: 10px;" onclick="location.reload()">⬅ Отмена</button>
@@ -81,7 +81,7 @@
 
     <div id="final-screen" class="screen">
         <h1>ГОТОВО!</h1>
-        <div class="check">✅ Заказ зафиксирован. Отправьте скриншот оплаты Евгению Владиславовичу Б. (@MOTOMAN86_RUS).</div>
+        <div class="check">✅ Заказ зафиксирован. Нажмите кнопку ниже, чтобы отправить скриншот оплаты для подтверждения заказа.</div>
         <button class="final-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТ</button>
     </div>
 
@@ -117,8 +117,6 @@
             
             document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'block';
-            
-            // Сбрасываем видимость блоков
             document.getElementById('card-details').style.display = 'none';
             document.getElementById('sbp-details').style.display = 'none';
 
@@ -139,7 +137,7 @@
 
         function contactOwner() {
             tg.openTelegramLink("https://t.me/MOTOMAN86_RUS"); 
-            setTimeout(() => { tg.close(); }, 1000);
+            setTimeout(() => { tg.close(); }, 500);
         }
     </script>
 </body>
