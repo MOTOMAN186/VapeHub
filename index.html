@@ -27,7 +27,7 @@
         .pay-option p { margin: 0; font-size: 13px; color: #bbb; }
 
         .qr-img { width: 240px; height: 240px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
-        .qr-img img { width: 100%; height: 100%; object-fit: contain; }
+        .qr-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
         
         .final-btn { background: #0088cc; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 18px; margin-top: 20px; cursor: pointer; }
     </style>
@@ -114,12 +114,18 @@
                 showFinal();
                 return;
             }
+            
             document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'block';
+            
+            // Сбрасываем видимость блоков
+            document.getElementById('card-details').style.display = 'none';
+            document.getElementById('sbp-details').style.display = 'none';
+
             if (type === 'card') {
                 document.getElementById('card-details').style.display = 'block';
                 document.getElementById('check-info').innerText = `🚀 ЗАКАЗ: ${currentOrder.name}\n💰 СУММА: ${currentOrder.price} ₽\n📍 АДРЕС: ${currentOrder.address}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
-            } else {
+            } else if (type === 'sbp') {
                 document.getElementById('sbp-details').style.display = 'block';
                 document.getElementById('qr-sum').innerText = currentOrder.price;
             }
