@@ -8,12 +8,11 @@
         body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; margin: 0; }
         h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-bottom: 15px; }
         
-        /* КАТАЛОГ (КАТЕГОРИИ) */
         .categories { 
             display: flex; 
             overflow-x: auto; 
             gap: 10px; 
-            padding: 10px 0; 
+            padding: 10px 5px; 
             margin-bottom: 20px; 
             scrollbar-width: none; 
         }
@@ -30,14 +29,12 @@
         }
         .cat-btn.active { background: #ff4e00; border-color: #ff4e00; }
 
-        /* ТОВАРЫ */
         .container { display: flex; flex-direction: column; gap: 20px; padding-bottom: 50px; }
         .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; display: block; }
         .item img { width: 100%; max-width: 280px; border-radius: 10px; }
         .price { color: #ff4e00; font-size: 22px; font-weight: bold; margin: 10px 0; }
         .buy-btn { background: #ff4e00; color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
         
-        /* ЭКРАНЫ ОПЛАТЫ */
         .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; overflow-y: auto; }
         .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; }
         .pay-option { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 15px; cursor: pointer; border: 1px solid #444; }
@@ -56,6 +53,7 @@
             <div class="cat-btn" onclick="filterCategory('device', this)">Vape-устройства</div>
             <div class="cat-btn" onclick="filterCategory('liquid', this)">Жидкости</div>
             <div class="cat-btn" onclick="filterCategory('disposable', this)">Одноразки</div>
+            <div class="cat-btn" onclick="filterCategory('coil', this)">Испарители</div>
             <div class="cat-btn" onclick="filterCategory('snus', this)">Снюс</div>
         </div>
 
@@ -65,12 +63,15 @@
             <div class="item" data-cat="liquid"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><button class="buy-btn" onclick="startOrder('Монашка', 600)">Купить</button></div>
             
             <div class="item" data-cat="device"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><button class="buy-btn" onclick="startOrder('Pasito 3', 5000)">Купить</button></div>
-            <div class="item" data-cat="device"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Device', 1690)">Купить</button></div>
             
+            <div class="item" data-cat="disposable"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Device', 1690)">Купить</button></div>
+            <div class="item" data-cat="disposable"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Cartridges', 1100)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Waka 10k', 1690)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><button class="buy-btn" onclick="startOrder('Waka 20k', 2290)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><button class="buy-btn" onclick="startOrder('Waka 25k', 2490)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><button class="buy-btn" onclick="startOrder('Pafos 20k', 2590)">Купить</button></div>
+
+            <div class="item" data-cat="coil"><img src="coil_example.jpg"><div>Испаритель (Пример)</div><div class="price">350 ₽</div><button class="buy-btn" onclick="startOrder('Испаритель', 350)">Купить</button></div>
 
             <div class="item" data-cat="snus" style="display:none;"><img src="snus.jpg"><div>Снюс (Пример)</div><div class="price">400 ₽</div><button class="buy-btn" onclick="startOrder('Snus', 400)">Купить</button></div>
         </div>
@@ -107,11 +108,9 @@
         let currentOrder = { name: '', price: 0, address: '' };
 
         function filterCategory(cat, btn) {
-            // Кнопки
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Товары
             document.querySelectorAll('.item').forEach(item => {
                 if (cat === 'all' || item.getAttribute('data-cat') === cat) {
                     item.style.display = 'block';
