@@ -19,82 +19,39 @@
 <body>
     <h1>VAPE HUB</h1>
     <div class="container">
-        <div class="item">
-            <img src="IMG_2450.jpeg" alt="HOTSPOT">
-            <div class="title">Жидкость HOTSPOT</div>
-            <div class="price">500 ₽</div>
-            <button onclick="sendOrder('HOTSPOT (500₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2449.jpeg" alt="АЧОНЕТ?">
-            <div class="title">Жидкость «АЧОНЕТ?»</div>
-            <div class="price">450 ₽</div>
-            <button onclick="sendOrder('АЧОНЕТ? (450₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2445.webp" alt="Монашка">
-            <div class="title">Жидкость Монашка</div>
-            <div class="price">600 ₽</div>
-            <button onclick="sendOrder('Монашка (600₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2448.webp" alt="Smoant Pasito 3">
-            <div class="title">Smoant Pasito 3</div>
-            <div class="price">5000 ₽</div>
-            <button onclick="sendOrder('Pasito 3 (5000₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2451.jpeg" alt="Waka 10k">
-            <div class="title">Waka 10k</div>
-            <div class="price">1690 ₽</div>
-            <button onclick="sendOrder('Waka 10k (1690₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2452.jpeg" alt="Waka 20k">
-            <div class="title">Waka 20k</div>
-            <div class="price">2290 ₽</div>
-            <button onclick="sendOrder('Waka 20k (2290₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2453.webp" alt="Waka 25k">
-            <div class="title">Waka 25k</div>
-            <div class="price">2490 ₽</div>
-            <button onclick="sendOrder('Waka 25k (2490₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2474.jpeg" alt="Pafos">
-            <div class="title">Pafos 20k</div>
-            <div class="price">2590 ₽</div>
-            <button onclick="sendOrder('Pafos 20k (2590₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2476.jpeg" alt="Lost Mary Cartridges">
-            <div class="title">Картриджи Lost Mary</div>
-            <div class="price">1100 ₽</div>
-            <button onclick="sendOrder('Lost Mary Cartridges (1100₽)')">Выбрать</button>
-        </div>
-
-        <div class="item">
-            <img src="IMG_2477.jpeg" alt="Lost Mary Device">
-            <div class="title">Устройство Lost Mary</div>
-            <div class="price">1690 ₽</div>
-            <button onclick="sendOrder('Lost Mary Device (1690₽)')">Выбрать</button>
-        </div>
+        <div class="item"><img src="IMG_2450.jpeg"><div class="title">Жидкость HOTSPOT</div><div class="price">500 ₽</div><button onclick="order('HOTSPOT', 500)">Купить</button></div>
+        <div class="item"><img src="IMG_2449.jpeg"><div class="title">Жидкость «АЧОНЕТ?»</div><div class="price">450 ₽</div><button onclick="order('АЧОНЕТ?', 450)">Купить</button></div>
+        <div class="item"><img src="IMG_2445.webp"><div class="title">Жидкость Монашка</div><div class="price">600 ₽</div><button onclick="order('Монашка', 600)">Купить</button></div>
+        <div class="item"><img src="IMG_2448.webp"><div class="title">Smoant Pasito 3</div><div class="price">5000 ₽</div><button onclick="order('Pasito 3', 5000)">Купить</button></div>
+        <div class="item"><img src="IMG_2451.jpeg"><div class="title">Waka 10k</div><div class="price">1690 ₽</div><button onclick="order('Waka 10k', 1690)">Купить</button></div>
+        <div class="item"><img src="IMG_2452.jpeg"><div class="title">Waka 20k</div><div class="price">2290 ₽</div><button onclick="order('Waka 20k', 2290)">Купить</button></div>
+        <div class="item"><img src="IMG_2453.webp"><div class="title">Waka 25k</div><div class="price">2490 ₽</div><button onclick="order('Waka 25k', 2490)">Купить</button></div>
+        <div class="item"><img src="IMG_2474.jpeg"><div class="title">Pafos 20k</div><div class="price">2590 ₽</div><button onclick="order('Pafos 20k', 2590)">Купить</button></div>
+        <div class="item"><img src="IMG_2476.jpeg"><div class="title">Картриджи Lost Mary</div><div class="price">1100 ₽</div><button onclick="order('Lost Mary Cartridges', 1100)">Купить</button></div>
+        <div class="item"><img src="IMG_2477.jpeg"><div class="title">Устройство Lost Mary</div><div class="price">1690 ₽</div><button onclick="order('Lost Mary Device', 1690)">Купить</button></div>
     </div>
+
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
-        function sendOrder(item) {
-            tg.sendData('Заказ: ' + item);
-            tg.close();
+
+        function order(name, price) {
+            // Покупатель сам вводит адрес в это окно:
+            const address = prompt("Введите адрес доставки в Сургуте:");
+            
+            if (address) {
+                const message = "🚀 НОВЫЙ ЗАКАЗ\n" +
+                                "——————————————\n" +
+                                "📦 Товар: " + name + "\n" +
+                                "💰 Цена: " + price + " ₽\n" +
+                                "📍 Адрес: " + address + "\n" +
+                                "——————————————\n" +
+                                "💳 ОПЛАТА: Т-Банк\n" +
+                                "📞 Номер: 89222490553\n" +
+                                "👤 Получатель: Евгений Б.";
+                
+                tg.sendData(message); 
+            }
         }
     </script>
 </body>
