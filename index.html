@@ -5,14 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { background: #1a1a1a; color: white; text-align: center; font-family: -apple-system, sans-serif; padding: 20px; margin: 0; }
-        h1 { color: #ff4e00; margin-bottom: 20px; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; }
-        .container { display: flex; flex-direction: column; gap: 20px; padding-bottom: 50px; }
-        .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; }
-        .item img { width: 100%; max-width: 280px; border-radius: 10px; margin-bottom: 12px; }
-        .title { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
-        .price { color: #ff4e00; font-size: 22px; font-weight: bold; margin-bottom: 15px; }
-        button { background: #ff4e00; color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 16px; cursor: pointer; }
+        body { 
+            background: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        h1 { 
+            color: #ff4e00; 
+            margin-bottom: 20px; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        .container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            padding-bottom: 50px; 
+        }
+        .item { 
+            background: #252525; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 1px solid #333; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+        }
+        .item img { 
+            width: 100%; 
+            max-width: 280px; 
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+            display: block; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        .title { 
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-bottom: 8px; 
+        }
+        .price { 
+            color: #ff4e00; 
+            font-size: 22px; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+        }
+        button { 
+            background: #ff4e00; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 10px; 
+            width: 100%; 
+            font-weight: bold; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: transform 0.1s; 
+        }
+        button:active { 
+            transform: scale(0.98); 
+            background: #e64600; 
+        }
     </style>
 </head>
 <body>
@@ -37,24 +93,24 @@
         function order(name, price) {
             const address = prompt("Укажите адрес доставки в Сургуте:");
             
-            if (address) {
+            if (address && address.trim() !== "") {
                 const text = "🚀 ЗАКАЗ: " + name + "\n" +
                              "💰 СУММА: " + price + " ₽\n" +
                              "📍 АДРЕС: " + address + "\n" +
                              "💳 КАРТА: 89222490553 (Т-Банк)\n" +
                              "⚠️ Скиньте скриншот оплаты!";
                 
-                // Хитрый способ: открываем ссылку, которая подставит текст в чат
-                const botUsername = "VapeHub_Surgut_bot"; // Твой юзернейм
+                const botUsername = "VapeHub_Surgut_bot";
                 const encodedText = encodeURIComponent(text);
+                const fullUrl = "https://t.me/" + botUsername + "?text=" + encodedText;
                 
-                // Эта ссылка закрывает WebApp и открывает чат с готовым текстом
-                window.location.href = "https://t.me/" + botUsername + "?text=" + encodedText;
+                // Переход в чат с подставленным текстом
+                tg.openTelegramLink(fullUrl);
                 
-                // На всякий случай дублируем в буфер обмена
-                navigator.clipboard.writeText(text);
-                
-                setTimeout(() => { tg.close(); }, 500);
+                // Закрываем WebApp
+                setTimeout(() => {
+                    tg.close();
+                }, 100);
             }
         }
     </script>
