@@ -7,7 +7,7 @@
     <style>
         body { background: #1a1a1a; color: white; text-align: center; font-family: -apple-system, sans-serif; padding: 20px; margin: 0; }
         h1 { color: #ff4e00; margin-bottom: 20px; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; }
-        .container { display: flex; flex-direction: column; gap: 20px; }
+        .container { display: flex; flex-direction: column; gap: 20px; padding-bottom: 50px; }
         .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .item img { width: 100%; max-width: 280px; border-radius: 10px; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
         .title { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
@@ -36,10 +36,9 @@
         tg.expand();
 
         function order(name, price) {
-            // Покупатель сам вводит адрес в это окно:
-            const address = prompt("Введите адрес доставки в Сургуте:");
+            const address = prompt("Укажите адрес доставки в Сургуте:");
             
-            if (address) {
+            if (address !== null && address.trim() !== "") {
                 const message = "🚀 НОВЫЙ ЗАКАЗ\n" +
                                 "——————————————\n" +
                                 "📦 Товар: " + name + "\n" +
@@ -50,7 +49,8 @@
                                 "📞 Номер: 89222490553\n" +
                                 "👤 Получатель: Евгений Б.";
                 
-                tg.sendData(message); 
+                tg.sendData(message); // Отправка в чат
+                tg.close(); // Закрытие магазина
             }
         }
     </script>
