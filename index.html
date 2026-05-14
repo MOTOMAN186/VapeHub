@@ -8,39 +8,28 @@
         body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; margin: 0; }
         h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-bottom: 15px; }
         
-        .categories { 
-            display: flex; 
-            overflow-x: auto; 
-            gap: 10px; 
-            padding: 10px 5px; 
-            margin-bottom: 20px; 
-            scrollbar-width: none; 
-        }
+        .categories { display: flex; overflow-x: auto; gap: 10px; padding: 10px 5px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
-        .cat-btn { 
-            background: #252525; 
-            color: white; 
-            border: 1px solid #333; 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            white-space: nowrap; 
-            font-size: 14px; 
-            cursor: pointer; 
-        }
+        .cat-btn { background: #252525; color: white; border: 1px solid #333; padding: 8px 15px; border-radius: 20px; white-space: nowrap; font-size: 14px; cursor: pointer; }
         .cat-btn.active { background: #ff4e00; border-color: #ff4e00; }
 
         .container { display: flex; flex-direction: column; gap: 20px; padding-bottom: 50px; }
-        .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; display: block; }
+        .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; }
         .item img { width: 100%; max-width: 280px; border-radius: 10px; }
         .price { color: #ff4e00; font-size: 22px; font-weight: bold; margin: 10px 0; }
         .buy-btn { background: #ff4e00; color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
         
         .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; }
-        .pay-option { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 15px; cursor: pointer; border: 1px solid #444; }
-        .qr-img { width: 200px; height: 200px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
-        .qr-img img { width: 100%; height: 100%; }
-        .final-btn { background: #0088cc; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 18px; margin-top: 20px; }
+        .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; font-size: 14px; }
+        
+        .pay-option { background: #333; padding: 15px; border-radius: 15px; margin-bottom: 12px; cursor: pointer; border: 1px solid #444; text-align: left; }
+        .pay-option h3 { margin: 0 0 5px 0; color: #ff4e00; font-size: 18px; }
+        .pay-option p { margin: 0; font-size: 13px; color: #bbb; }
+
+        .qr-img { width: 240px; height: 240px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
+        .qr-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .final-btn { background: #0088cc; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 18px; margin-top: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -61,43 +50,38 @@
             <div class="item" data-cat="liquid"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('HOTSPOT', 500)">Купить</button></div>
             <div class="item" data-cat="liquid"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><button class="buy-btn" onclick="startOrder('АЧОНЕТ?', 450)">Купить</button></div>
             <div class="item" data-cat="liquid"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><button class="buy-btn" onclick="startOrder('Монашка', 600)">Купить</button></div>
-            
             <div class="item" data-cat="device"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><button class="buy-btn" onclick="startOrder('Pasito 3', 5000)">Купить</button></div>
-            
             <div class="item" data-cat="disposable"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Device', 1690)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Cartridges', 1100)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Waka 10k', 1690)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><button class="buy-btn" onclick="startOrder('Waka 20k', 2290)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><button class="buy-btn" onclick="startOrder('Waka 25k', 2490)">Купить</button></div>
             <div class="item" data-cat="disposable"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><button class="buy-btn" onclick="startOrder('Pafos 20k', 2590)">Купить</button></div>
-
-            <div class="item" data-cat="coil"><img src="coil_example.jpg"><div>Испаритель (Пример)</div><div class="price">350 ₽</div><button class="buy-btn" onclick="startOrder('Испаритель', 350)">Купить</button></div>
-
-            <div class="item" data-cat="snus" style="display:none;"><img src="snus.jpg"><div>Снюс (Пример)</div><div class="price">400 ₽</div><button class="buy-btn" onclick="startOrder('Snus', 400)">Купить</button></div>
         </div>
     </div>
 
     <div id="pay-select-screen" class="screen">
-        <h1>ВЫБЕРИТЕ ОПЛАТУ</h1>
-        <div class="pay-option" onclick="showPayment('card')"><h3>💳 По реквизитам</h3><p>Номер: +79222490563\nБанк: Т-банк</p></div>
-        <div class="pay-option" onclick="showPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата через QR</p></div>
-        <button style="background:none; color: gray; border:none;" onclick="location.reload()">⬅ Назад</button>
+        <h1>СПОСОБ ОПЛАТЫ</h1>
+        <div class="pay-option" onclick="showPayment('tbank')"><h3>💳 Оплата картой</h3><p>Быстрая оплата через Т-Банк</p></div>
+        <div class="pay-option" onclick="showPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата по QR через любой банк</p></div>
+        <div class="pay-option" onclick="showPayment('card')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
+        <button style="background:none; color: gray; border:none; margin-top: 10px;" onclick="location.reload()">⬅ Отмена</button>
     </div>
 
     <div id="payment-details-screen" class="screen">
         <h1 id="pay-title">ОПЛАТА</h1>
         <div id="card-details" style="display:none;"><div class="check" id="check-info"></div></div>
         <div id="sbp-details" style="display:none;">
-            <p>Сканируйте QR:</p>
-            <div class="qr-img"><img src="qr_pay.png"></div>
+            <p>Отсканируйте QR в приложении банка:</p>
+            <div class="qr-img"><img src="qr_pay.png" alt="СБП QR"></div>
             <p>Сумма: <b id="qr-sum"></b> ₽</p>
         </div>
         <button class="final-btn" onclick="showFinal()">Я ОПЛАТИЛ(А)</button>
     </div>
 
     <div id="final-screen" class="screen">
-        <h1>ПОЧТИ ГОТОВО!</h1>
-        <div class="check">✅ Заказ принят. Отправьте скриншот оплаты по кнопке ниже.</div>
+        <h1>ГОТОВО!</h1>
+        <div class="check">✅ Заказ зафиксирован. Отправьте скриншот оплаты Евгению Владиславовичу Б. (@MOTOMAN86_RUS).</div>
         <button class="final-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТ</button>
     </div>
 
@@ -110,13 +94,9 @@
         function filterCategory(cat, btn) {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             document.querySelectorAll('.item').forEach(item => {
-                if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
+                if (cat === 'all' || item.getAttribute('data-cat') === cat) item.style.display = 'block';
+                else item.style.display = 'none';
             });
         }
 
@@ -129,11 +109,16 @@
         }
 
         function showPayment(type) {
+            if (type === 'tbank') {
+                tg.openLink("https://tbank.ru/cf/3DlhjJSRc0H");
+                showFinal();
+                return;
+            }
             document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'block';
             if (type === 'card') {
                 document.getElementById('card-details').style.display = 'block';
-                document.getElementById('check-info').innerText = `🚀 ЗАКАЗ: ${currentOrder.name}\n💰 СУММА: ${currentOrder.price} ₽\n📍 АДРЕС: ${currentOrder.address}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Б.`;
+                document.getElementById('check-info').innerText = `🚀 ЗАКАЗ: ${currentOrder.name}\n💰 СУММА: ${currentOrder.price} ₽\n📍 АДРЕС: ${currentOrder.address}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
             } else {
                 document.getElementById('sbp-details').style.display = 'block';
                 document.getElementById('qr-sum').innerText = currentOrder.price;
@@ -141,13 +126,14 @@
         }
 
         function showFinal() {
+            document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'none';
             document.getElementById('final-screen').style.display = 'block';
         }
 
         function contactOwner() {
-            tg.openTelegramLink("https://t.me/motoman186"); 
-            tg.close();
+            tg.openTelegramLink("https://t.me/MOTOMAN86_RUS"); 
+            setTimeout(() => { tg.close(); }, 1000);
         }
     </script>
 </body>
