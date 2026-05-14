@@ -1,36 +1,26 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>be1.ru</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
+        .item { background: #252525; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ff4e00; }
+        button { background: #ff4e00; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; font-weight: bold; }
+        h1 { color: #ff4e00; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-<p>&lt;!DOCTYPE html&gt;<br />
-&lt;html&gt;<br />
-&lt;head&gt;<br />
-&nbsp; &nbsp; &lt;meta charset=&quot;UTF-8&quot;&gt;<br />
-&nbsp; &nbsp; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;<br />
-&nbsp; &nbsp; &lt;script src=&quot;https://telegram.org/js/telegram-web-app.js&quot;&gt;&lt;/script&gt;<br />
-&nbsp; &nbsp; &lt;style&gt;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 20px; }<br />
-&nbsp; &nbsp; &nbsp; &nbsp; .item { background: #252525; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ff4e00; }<br />
-&nbsp; &nbsp; &nbsp; &nbsp; button { background: #ff4e00; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; }<br />
-&nbsp; &nbsp; &nbsp; &nbsp; h1 { color: #ff4e00; }<br />
-&nbsp; &nbsp; &lt;/style&gt;<br />
-&lt;/head&gt;<br />
-&lt;body&gt;<br />
-&nbsp; &nbsp; &lt;h1&gt;VAPE HUB&lt;/h1&gt;<br />
-&nbsp; &nbsp; &lt;div class=&quot;item&quot;&gt;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &lt;p&gt;XROS 4 &mdash; 2800 ₽&lt;/p&gt;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &lt;button onclick=&quot;tg.sendData(&#39;XROS 4&#39;); tg.close();&quot;&gt;Выбрать&lt;/button&gt;<br />
-&nbsp; &nbsp; &lt;/div&gt;<br />
-&nbsp; &nbsp; &lt;div class=&quot;item&quot;&gt;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &lt;p&gt;Husky Salt &mdash; 550 ₽&lt;/p&gt;<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &lt;button onclick=&quot;tg.sendData(&#39;Husky&#39;); tg.close();&quot;&gt;Выбрать&lt;/button&gt;<br />
-&nbsp; &nbsp; &lt;/div&gt;<br />
-&nbsp; &nbsp; &lt;script&gt;const tg = window.Telegram.WebApp; tg.expand();&lt;/script&gt;<br />
-&lt;/body&gt;<br />
-&lt;/html&gt;</p>
-
-<p>&nbsp;</p>
+    <h1>VAPE HUB</h1>
+    <div class="item">
+        <p>XROS 4 — 2800 ₽</p>
+        <button onclick="window.Telegram.WebApp.sendData('Заказ: XROS 4'); window.Telegram.WebApp.close();">Выбрать</button>
+    </div>
+    <div class="item">
+        <p>Husky Salt — 550 ₽</p>
+        <button onclick="window.Telegram.WebApp.sendData('Заказ: Husky'); window.Telegram.WebApp.close();">Выбрать</button>
+    </div>
+    <script>window.Telegram.WebApp.expand();</script>
 </body>
 </html>
