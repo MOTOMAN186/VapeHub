@@ -13,8 +13,8 @@
         .price { color: #ff4e00; font-size: 22px; font-weight: bold; margin: 10px 0; }
         .buy-btn { background: #ff4e00; color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
         #confirm-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; }
-        .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; }
-        .send-btn { background: #0088cc; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 18px; margin-top: 20px; cursor: pointer; }
+        .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; font-size: 14px; }
+        .close-btn { background: #444; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -22,55 +22,57 @@
     <div id="main-screen">
         <h1>VAPE HUB SURGUT</h1>
         <div class="container">
-            <div class="item"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><button class="buy-btn" onclick="showConfirm('HOTSPOT', 500)">Купить</button></div>
-            <div class="item"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><button class="buy-btn" onclick="showConfirm('АЧОНЕТ?', 450)">Купить</button></div>
-            <div class="item"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><button class="buy-btn" onclick="showConfirm('Монашка', 600)">Купить</button></div>
-            <div class="item"><img src="IMG_2448.webp"><div>Pasito 3</div><div class="price">5000 ₽</div><button class="buy-btn" onclick="showConfirm('Pasito 3', 5000)">Купить</button></div>
-            <div class="item"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="showConfirm('Waka 10k', 1690)">Купить</button></div>
-            <div class="item"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><button class="buy-btn" onclick="showConfirm('Waka 20k', 2290)">Купить</button></div>
-            <div class="item"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><button class="buy-btn" onclick="showConfirm('Waka 25k', 2490)">Купить</button></div>
-            <div class="item"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><button class="buy-btn" onclick="showConfirm('Pafos 20k', 2590)">Купить</button></div>
-            <div class="item"><img src="IMG_2476.jpeg"><div>Картриджи Lost Mary</div><div class="price">1100 ₽</div><button class="buy-btn" onclick="showConfirm('Lost Mary Cartridges', 1100)">Купить</button></div>
-            <div class="item"><img src="IMG_2477.jpeg"><div>Устройство Lost Mary</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="showConfirm('Lost Mary Device', 1690)">Купить</button></div>
+            <div class="item"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><button class="buy-btn" onclick="sendOrder('HOTSPOT', 500)">Купить</button></div>
+            <div class="item"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><button class="buy-btn" onclick="sendOrder('АЧОНЕТ?', 450)">Купить</button></div>
+            <div class="item"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><button class="buy-btn" onclick="sendOrder('Монашка', 600)">Купить</button></div>
+            <div class="item"><img src="IMG_2448.webp"><div>Pasito 3</div><div class="price">5000 ₽</div><button class="buy-btn" onclick="sendOrder('Pasito 3', 5000)">Купить</button></div>
+            <div class="item"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="sendOrder('Waka 10k', 1690)">Купить</button></div>
+            <div class="item"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><button class="buy-btn" onclick="sendOrder('Waka 20k', 2290)">Купить</button></div>
+            <div class="item"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><button class="buy-btn" onclick="sendOrder('Waka 25k', 2490)">Купить</button></div>
+            <div class="item"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><button class="buy-btn" onclick="sendOrder('Pafos 20k', 2590)">Купить</button></div>
+            <div class="item"><img src="IMG_2476.jpeg"><div>Картриджи Lost Mary</div><div class="price">1100 ₽</div><button class="buy-btn" onclick="sendOrder('Lost Mary Cartridges', 1100)">Купить</button></div>
+            <div class="item"><img src="IMG_2477.jpeg"><div>Устройство Lost Mary</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="sendOrder('Lost Mary Device', 1690)">Купить</button></div>
         </div>
     </div>
 
     <div id="confirm-screen">
-        <h1>ТВОЙ ЗАКАЗ</h1>
+        <h1 id="status-title">ОТПРАВКА...</h1>
         <div class="check" id="check-info"></div>
-        <button class="send-btn" id="send-link-btn">ОТПРАВИТЬ ЗАКАЗ В ЧАТ</button>
-        <button style="background:none; color: gray; border:none; margin-top:15px;" onclick="location.reload()">⬅ Назад к покупкам</button>
+        <button class="close-btn" onclick="tg.close()">ЗАКРЫТЬ МАГАЗИН</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
-        tg.expand();
+        const botToken = 'ТВОЙ_ТОКЕН_ТУТ'; // ВСТАВЬ СЮДА ТОКЕН ОТ BOTFATHER
+        const chatId = tg.initDataUnsafe.user.id;
 
-        function showConfirm(name, price) {
+        function sendOrder(name, price) {
             const address = prompt("Укажите адрес доставки в Сургуте:");
             if (!address) return;
 
-            // Обновил текст реквизитов по твоей просьбе
-            const message = "🚀 ЗАКАЗ: " + name + 
-                            "\n💰 СУММА: " + price + " ₽" + 
-                            "\n📍 АДРЕС: " + address + 
-                            "\n📱 НОМЕР: +79222490563" + 
-                            "\n🏦 БАНК: Т-Банк" + 
-                            "\n👤 Евгений Б." + 
-                            "\n⚠️ Скиньте скрин оплаты!";
-            
+            const message = `🚀 НОВЫЙ ЗАКАЗ\n━━━━━━━━━━━━━━━\n📦 Товар: ${name}\n💰 Сумма: ${price} ₽\n📍 Адрес: ${address}\n👤 Клиент: ${tg.initDataUnsafe.user.first_name || 'Не указано'}\n━━━━━━━━━━━━━━━\n📱 Номер: +79222490563\n🏦 Банк: Т-Банк\n⚠️ Скиньте скрин оплаты!`;
+
+            // Показываем экран подтверждения сразу
             document.getElementById('main-screen').style.display = 'none';
             document.getElementById('confirm-screen').style.display = 'block';
             document.getElementById('check-info').innerText = message;
 
-            const botUrl = "https://t.me/VapeHub_Surgut_bot?text=" + encodeURIComponent(message);
-            
-            document.getElementById('send-link-btn').onclick = function() {
-                tg.openTelegramLink(botUrl);
-                setTimeout(() => {
-                    tg.close();
-                }, 2000);
-            };
+            // Отправляем через Bot API
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('status-title').innerText = "ЗАКАЗ ПРИНЯТ!";
+                } else {
+                    alert("Ошибка при отправке заказа. Напишите нам в чат напрямую!");
+                }
+            });
         }
     </script>
 </body>
