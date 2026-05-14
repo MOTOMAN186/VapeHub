@@ -5,23 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        .item { background: #252525; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ff4e00; }
-        .item img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
-        button { background: #ff4e00; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer; }
-        h1 { color: #ff4e00; margin-bottom: 20px; }
-        p { margin: 5px 0; font-size: 18px; }
+        body { 
+            background: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            font-family: -apple-system, sans-serif; 
+            padding: 20px; 
+            margin: 0;
+        }
+        h1 { color: #ff4e00; margin-bottom: 20px; font-size: 24px; }
+        .container { display: flex; flex-direction: column; gap: 15px; }
+        .item { 
+            background: #252525; 
+            padding: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #333;
+        }
+        .item img { 
+            width: 100%; 
+            max-width: 300px;
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+        }
+        .title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+        .price { color: #ff4e00; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        button { 
+            background: #ff4e00; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 8px; 
+            width: 100%; 
+            font-weight: bold; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>VAPE HUB</h1>
 
-    <div class="item">
-        <img src="https://raw.githubusercontent.com/motoman186/VapeHub/main/image_16.png" alt="Монашка">
-        <p>Жидкость Монашка — 600 ₽</p>
-        <button onclick="window.Telegram.WebApp.sendData('Заказ: Монашка'); window.Telegram.WebApp.close();">Выбрать</button>
+    <div class="container">
+        <!-- ТОВАР 1: HOTSPOT -->
+        <div class="item">
+            <img src="image_21.png" alt="HOTSPOT">
+            <div class="title">Жидкость HOTSPOT</div>
+            <div class="price">500 ₽</div>
+            <button onclick="sendOrder('HOTSPOT (500₽)')">Выбрать</button>
+        </div>
+
+        <!-- ТОВАР 2: АЧОНЕТ -->
+        <div class="item">
+            <img src="image_20.png" alt="Жидкость АЧОНЕТ?">
+            <div class="title">Жидкость «АЧОНЕТ?»</div>
+            <div class="price">450 ₽</div>
+            <button onclick="sendOrder('АЧОНЕТ? (450₽)')">Выбрать</button>
+        </div>
+
+        <!-- ТОВАР 3: ПАСИТО 3 -->
+        <div class="item">
+            <img src="image_19.png" alt="Smoant Pasito 3">
+            <div class="title">Smoant Pasito 3</div>
+            <div class="price">5000 ₽</div>
+            <button onclick="sendOrder('Pasito 3 (5000₽)')">Выбрать</button>
+        </div>
+
+        <!-- ТОВАР 4: МОНАШКА -->
+        <div class="item">
+            <img src="image_16.png" alt="Монашка">
+            <div class="title">Жидкость Монашка</div>
+            <div class="price">600 ₽</div>
+            <button onclick="sendOrder('Монашка (600₽)')">Выбрать</button>
+        </div>
     </div>
 
-    <script>window.Telegram.WebApp.expand();</script>
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        function sendOrder(item) {
+            tg.sendData('Заказ: ' + item);
+            tg.close();
+        }
+    </script>
 </body>
 </html>
