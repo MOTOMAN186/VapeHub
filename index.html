@@ -6,21 +6,22 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        .item { background: #252525; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ff4e00; }
-        button { background: #ff4e00; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; font-weight: bold; }
+        .item { background: #252525; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ff4e00; }
+        .item img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
+        button { background: #ff4e00; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer; }
         h1 { color: #ff4e00; margin-bottom: 20px; }
+        p { margin: 5px 0; font-size: 18px; }
     </style>
 </head>
 <body>
     <h1>VAPE HUB</h1>
+
     <div class="item">
-        <p>XROS 4 — 2800 ₽</p>
-        <button onclick="window.Telegram.WebApp.sendData('Заказ: XROS 4'); window.Telegram.WebApp.close();">Выбрать</button>
+        <img src="https://raw.githubusercontent.com/motoman186/VapeHub/main/image_16.png" alt="Монашка">
+        <p>Жидкость Монашка — 600 ₽</p>
+        <button onclick="window.Telegram.WebApp.sendData('Заказ: Монашка'); window.Telegram.WebApp.close();">Выбрать</button>
     </div>
-    <div class="item">
-        <p>Husky Salt — 550 ₽</p>
-        <button onclick="window.Telegram.WebApp.sendData('Заказ: Husky'); window.Telegram.WebApp.close();">Выбрать</button>
-    </div>
+
     <script>window.Telegram.WebApp.expand();</script>
 </body>
 </html>
