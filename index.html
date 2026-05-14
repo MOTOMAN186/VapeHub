@@ -50,7 +50,14 @@
             const address = prompt("Укажите адрес доставки в Сургуте:");
             if (!address) return;
 
-            const message = "🚀 ЗАКАЗ: " + name + "\n💰 СУММА: " + price + " ₽\n📍 АДРЕС: " + address + "\n📱 НОМЕР: +79222490553 (Т-Банк)\n👤 Евгений Б.\n⚠️ Скиньте скрин оплаты!";
+            // Обновил текст реквизитов по твоей просьбе
+            const message = "🚀 ЗАКАЗ: " + name + 
+                            "\n💰 СУММА: " + price + " ₽" + 
+                            "\n📍 АДРЕС: " + address + 
+                            "\n📱 НОМЕР: +79222490563" + 
+                            "\n🏦 БАНК: Т-Банк" + 
+                            "\n👤 Евгений Б." + 
+                            "\n⚠️ Скиньте скрин оплаты!";
             
             document.getElementById('main-screen').style.display = 'none';
             document.getElementById('confirm-screen').style.display = 'block';
@@ -60,8 +67,6 @@
             
             document.getElementById('send-link-btn').onclick = function() {
                 tg.openTelegramLink(botUrl);
-                
-                // Задержка перед закрытием, чтобы переход в чат не сорвался
                 setTimeout(() => {
                     tg.close();
                 }, 2000);
