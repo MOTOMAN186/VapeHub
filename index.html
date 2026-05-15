@@ -5,31 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 20px; margin: 0; }
-        h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-bottom: 15px; }
+        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 0; margin: 0; overflow-x: hidden; }
+        h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-top: 20px; }
         
-        .categories { display: flex; overflow-x: auto; gap: 10px; padding: 10px 5px; margin-bottom: 20px; scrollbar-width: none; }
+        .categories { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
         .cat-btn { background: #252525; color: white; border: 1px solid #333; padding: 8px 15px; border-radius: 20px; white-space: nowrap; font-size: 14px; cursor: pointer; }
         .cat-btn.active { background: #ff4e00; border-color: #ff4e00; }
 
-        .container { display: flex; flex-direction: column; gap: 20px; padding-bottom: 50px; }
+        .container { display: flex; flex-direction: column; gap: 20px; padding: 0 20px 100px 20px; }
         .item { background: #252525; padding: 15px; border-radius: 15px; border: 1px solid #333; }
-        .item img { width: 100%; max-width: 280px; border-radius: 10px; }
-        .price { color: #ff4e00; font-size: 22px; font-weight: bold; margin: 10px 0; }
-        .buy-btn { background: #ff4e00; color: white; border: none; padding: 14px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
+        .item img { width: 100%; max-width: 280px; border-radius: 10px; margin-bottom: 10px; }
+        .price { color: #ff4e00; font-size: 20px; font-weight: bold; margin-bottom: 10px; }
+
+        .controls { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .buy-btn { background: #ff4e00; color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
+        .count-btn { background: #333; color: white; border: 1px solid #444; width: 40px; height: 40px; border-radius: 10px; font-size: 20px; cursor: pointer; }
+        .count-val { font-size: 18px; font-weight: bold; min-width: 30px; }
+
+        #cart-fab { position: fixed; bottom: 20px; right: 20px; background: #ff4e00; color: white; padding: 15px 20px; border-radius: 30px; border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; display: none; z-index: 99; transition: transform 0.2s; }
         
         .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .check { background: #252525; padding: 20px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 20px; text-align: left; white-space: pre-wrap; font-family: monospace; font-size: 14px; }
         
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #252525; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #333; }
+        .total-row { font-size: 20px; font-weight: bold; margin: 20px 0; text-align: right; border-top: 1px solid #333; padding-top: 10px; }
+        
+        .check { background: #252525; padding: 15px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 10px; text-align: left; white-space: pre-wrap; font-family: monospace; font-size: 14px; }
         .pay-option { background: #333; padding: 15px; border-radius: 15px; margin-bottom: 12px; cursor: pointer; border: 1px solid #444; text-align: left; }
-        .pay-option h3 { margin: 0 0 5px 0; color: #ff4e00; font-size: 18px; }
-        .pay-option p { margin: 0; font-size: 13px; color: #bbb; }
-
-        .qr-img { width: 240px; height: 240px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
-        .qr-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .pay-option h3 { margin: 0 0 5px 0; color: #ff4e00; }
         
-        .final-btn { background: #0088cc; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 18px; margin-top: 20px; cursor: pointer; }
+        .qr-img { width: 200px; height: 200px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
+        .qr-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .final-btn { background: #ff4e00; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
+        .secondary-btn { background: #0088cc; }
+        .back-link { display: block; margin: 15px 0; color: gray; text-decoration: none; font-size: 14px; cursor: pointer; }
+        
+        .important-note { color: #ffcc00; font-size: 13px; margin: 10px 0; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -39,7 +51,7 @@
         
         <div class="categories">
             <div class="cat-btn active" onclick="filterCategory('all', this)">Все</div>
-            <div class="cat-btn" onclick="filterCategory('device', this)">Vape-устройства</div>
+            <div class="cat-btn" onclick="filterCategory('device', this)">Устройства</div>
             <div class="cat-btn" onclick="filterCategory('liquid', this)">Жидкости</div>
             <div class="cat-btn" onclick="filterCategory('disposable', this)">Одноразки</div>
             <div class="cat-btn" onclick="filterCategory('coil', this)">Испарители</div>
@@ -48,61 +60,69 @@
         </div>
 
         <div class="container" id="product-list">
-            <div class="item" data-cat="snus"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('Ice cool', 500)">Купить</button></div>
-            <div class="item" data-cat="snus"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('Velo', 500)">Купить</button></div>
-            <div class="item" data-cat="snus"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('Kasta', 500)">Купить</button></div>
-            <div class="item" data-cat="snus"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('Corvus', 500)">Купить</button></div>
+            <div class="item" data-cat="snus" data-id="1"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><div class="controls" id="controls-1"><button class="buy-btn" onclick="addToCart(1, 'Ice cool', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="2"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><div class="controls" id="controls-2"><button class="buy-btn" onclick="addToCart(2, 'Velo', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="10"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><div class="controls" id="controls-10"><button class="buy-btn" onclick="addToCart(10, 'Kasta', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="11"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><div class="controls" id="controls-11"><button class="buy-btn" onclick="addToCart(11, 'Corvus', 500)">В корзину</button></div></div>
+            
+            <div class="item" data-cat="cotton" data-id="4"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><div class="controls" id="controls-4"><button class="buy-btn" onclick="addToCart(4, 'Ватки Loop', 300)">В корзину</button></div></div>
 
-            <div class="item" data-cat="cotton"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><button class="buy-btn" onclick="startOrder('Ватки Loop', 300)">Купить</button></div>
-
-            <div class="item" data-cat="coil"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><button class="buy-btn" onclick="startOrder('Испаритель Pasito/Knight', 350)">Купить</button></div>
-            <div class="item" data-cat="coil"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><button class="buy-btn" onclick="startOrder('Картридж XROS', 350)">Купить</button></div>
+            <div class="item" data-cat="coil" data-id="3"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><div class="controls" id="controls-3"><button class="buy-btn" onclick="addToCart(3, 'Испаритель Pasito/Knight', 350)">В корзину</button></div></div>
+            <div class="item" data-cat="coil" data-id="12"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><div class="controls" id="controls-12"><button class="buy-btn" onclick="addToCart(12, 'Картридж XROS', 350)">В корзину</button></div></div>
             
-            <div class="item" data-cat="liquid"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><button class="buy-btn" onclick="startOrder('HOTSPOT', 500)">Купить</button></div>
-            <div class="item" data-cat="liquid"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><button class="buy-btn" onclick="startOrder('АЧОНЕТ?', 450)">Купить</button></div>
-            <div class="item" data-cat="liquid"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><button class="buy-btn" onclick="startOrder('Монашка', 600)">Купить</button></div>
-            
-            <div class="item" data-cat="device"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><button class="buy-btn" onclick="startOrder('Pasito 3', 5000)">Купить</button></div>
-            
-            <div class="item" data-cat="disposable"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Device', 1690)">Купить</button></div>
-            <div class="item" data-cat="disposable"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><button class="buy-btn" onclick="startOrder('Lost Mary Cartridges', 1100)">Купить</button></div>
-            <div class="item" data-cat="disposable"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><button class="buy-btn" onclick="startOrder('Waka 10k', 1690)">Купить</button></div>
-            <div class="item" data-cat="disposable"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><button class="buy-btn" onclick="startOrder('Waka 20k', 2290)">Купить</button></div>
-            <div class="item" data-cat="disposable"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><button class="buy-btn" onclick="startOrder('Waka 25k', 2490)">Купить</button></div>
-            <div class="item" data-cat="disposable"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><button class="buy-btn" onclick="startOrder('Pafos 20k', 2590)">Купить</button></div>
+            <div class="item" data-cat="liquid" data-id="5"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><div class="controls" id="controls-5"><button class="buy-btn" onclick="addToCart(5, 'HOTSPOT', 500)">В корзину</button></div></div>
         </div>
+    </div>
+
+    <button id="cart-fab" onclick="showCart()">🛒 Корзина: <span id="cart-count">0</span></button>
+
+    <div id="cart-screen" class="screen">
+        <h1>ТВОЯ КОРЗИНА</h1>
+        <p class="important-note">📸 Сделайте скриншот этого экрана перед оплатой!</p>
+        <div id="cart-items-list"></div>
+        <div class="total-row">ИТОГО: <span id="cart-total-sum">0</span> ₽</div>
+        <button class="final-btn" onclick="checkout()">ОФОРМИТЬ ЗАКАЗ</button>
+        <span class="back-link" onclick="hideScreens()">⬅ Вернуться к покупкам</span>
     </div>
 
     <div id="pay-select-screen" class="screen">
         <h1>СПОСОБ ОПЛАТЫ</h1>
-        <div class="pay-option" onclick="showPayment('tbank')"><h3>💳 Оплата картой</h3><p>Быстрая оплата через приложение банка</p></div>
-        <div class="pay-option" onclick="showPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата по QR через любой банк</p></div>
-        <div class="pay-option" onclick="showPayment('card')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
-        <button style="background:none; color: gray; border:none; margin-top: 10px;" onclick="location.reload()">⬅ Отмена</button>
+        <div class="pay-option" onclick="processPayment('tbank')"><h3>💳 Карта Т-Банк</h3><p>Быстрый перевод через приложение</p></div>
+        <div class="pay-option" onclick="processPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата через любой банк</p></div>
+        <div class="pay-option" onclick="processPayment('manual')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
+        <span class="back-link" onclick="showCart()">⬅ Назад в корзину</span>
     </div>
 
     <div id="payment-details-screen" class="screen">
         <h1 id="pay-title">ОПЛАТА</h1>
         <div id="card-details" style="display:none;"><div class="check" id="check-info"></div></div>
         <div id="sbp-details" style="display:none;">
-            <p>Отсканируйте QR в приложении банка:</p>
-            <div class="qr-img"><img src="IMG_2488.jpeg" alt="СБП QR"></div>
+            <p>Отсканируйте QR:</p>
+            <div class="qr-img"><img src="IMG_2488.jpeg"></div>
             <p>Сумма: <b id="qr-sum"></b> ₽</p>
         </div>
-        <button class="final-btn" onclick="showFinal()">Я ОПЛАТИЛ(А)</button>
+        <p class="important-note">📸 Не забудьте сделать скриншот чека!</p>
+        <button class="final-btn secondary-btn" onclick="showFinal()">Я ОПЛАТИЛ(А)</button>
     </div>
 
     <div id="final-screen" class="screen">
-        <h1>ГОТОВО!</h1>
-        <div class="check">✅ Заказ зафиксирован. Нажмите кнопку ниже, чтобы отправить скриншот оплаты для подтверждения заказа.</div>
-        <button class="final-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТ</button>
+        <h1>ЗАКАЗ ПРИНЯТ!</h1>
+        <div class="check">
+✅ Заказ сохранен!
+            
+<b style="color:#ff4e00;">ВАЖНО:</b>
+1. Сделайте скриншот этого экрана (или корзины).
+2. Сделайте скриншот чека об оплате.
+3. Отправьте оба скриншота продавцу.
+        </div>
+        <button class="final-btn secondary-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТЫ</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        let currentOrder = { name: '', price: 0, address: '' };
+        let cart = {}; 
 
         function filterCategory(cat, btn) {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -113,39 +133,100 @@
             });
         }
 
-        function startOrder(name, price) {
+        function addToCart(id, name, price) {
+            if (!cart[id]) cart[id] = { name, price, count: 1 };
+            else cart[id].count++;
+            updateUI(id);
+        }
+
+        function updateUI(id) {
+            const container = document.getElementById(`controls-${id}`);
+            const count = cart[id] ? cart[id].count : 0;
+            if (count > 0) {
+                container.innerHTML = `<button class="count-btn" onclick="changeCount(${id}, -1)">−</button><span class="count-val">${count}</span><button class="count-btn" onclick="changeCount(${id}, 1)">+</button>`;
+            } else {
+                const itemEl = document.querySelector(`[data-id="${id}"]`);
+                const name = itemEl.querySelector('div').innerText;
+                const price = parseInt(itemEl.querySelector('.price').innerText);
+                container.innerHTML = `<button class="buy-btn" onclick="addToCart(${id}, '${name}', ${price})">В корзину</button>`;
+            }
+            refreshCartFab();
+        }
+
+        function changeCount(id, delta) {
+            if (cart[id]) {
+                cart[id].count += delta;
+                if (cart[id].count <= 0) delete cart[id];
+            }
+            updateUI(id);
+        }
+
+        function refreshCartFab() {
+            let totalCount = 0;
+            for (let id in cart) totalCount += cart[id].count;
+            const fab = document.getElementById('cart-fab');
+            if (totalCount > 0) {
+                fab.style.display = 'block';
+                document.getElementById('cart-count').innerText = totalCount;
+            } else fab.style.display = 'none';
+        }
+
+        function showCart() {
+            hideScreens();
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+            let totalSum = 0;
+            for (let id in cart) {
+                const item = cart[id];
+                totalSum += item.price * item.count;
+                list.innerHTML += `<div class="cart-item"><div style="text-align:left;"><b>${item.name}</b><br><small>${item.price} ₽ x ${item.count}</small></div><div class="controls"><button class="count-btn" onclick="changeCount(${id}, -1); showCart();">−</button><span class="count-val">${item.count}</span><button class="count-btn" onclick="changeCount(${id}, 1); showCart();">+</button></div></div>`;
+            }
+            document.getElementById('cart-total-sum').innerText = totalSum;
+            document.getElementById('cart-screen').style.display = 'block';
+            if (totalSum === 0) hideScreens();
+        }
+
+        function checkout() {
             const addr = prompt("Укажите адрес доставки в Сургуте:");
             if (!addr) return;
-            currentOrder = { name, price, address: addr };
-            document.getElementById('main-screen').style.display = 'none';
+            window.userAddr = addr;
+            document.getElementById('cart-screen').style.display = 'none';
             document.getElementById('pay-select-screen').style.display = 'block';
         }
 
-        function showPayment(type) {
+        function processPayment(type) {
+            let totalSum = 0;
+            let orderText = "";
+            for (let id in cart) {
+                totalSum += cart[id].price * cart[id].count;
+                orderText += `• ${cart[id].name} (${cart[id].count} шт.)\n`;
+            }
             if (type === 'tbank') {
                 tg.openLink("https://tbank.ru/cf/3DlhjJSRc0H");
                 showFinal();
                 return;
             }
-            
             document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'block';
             document.getElementById('card-details').style.display = 'none';
             document.getElementById('sbp-details').style.display = 'none';
-
-            if (type === 'card') {
+            if (type === 'manual') {
                 document.getElementById('card-details').style.display = 'block';
-                document.getElementById('check-info').innerText = `🚀 ЗАКАЗ: ${currentOrder.name}\n💰 СУММА: ${currentOrder.price} ₽\n📍 АДРЕС: ${currentOrder.address}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
+                document.getElementById('check-info').innerText = `📦 ЗАКАЗ:\n${orderText}\n💰 ИТОГО: ${totalSum} ₽\n📍 АДРЕС: ${window.userAddr}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
             } else if (type === 'sbp') {
                 document.getElementById('sbp-details').style.display = 'block';
-                document.getElementById('qr-sum').innerText = currentOrder.price;
+                document.getElementById('qr-sum').innerText = totalSum;
             }
         }
 
         function showFinal() {
-            document.getElementById('pay-select-screen').style.display = 'none';
-            document.getElementById('payment-details-screen').style.display = 'none';
+            document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
             document.getElementById('final-screen').style.display = 'block';
+        }
+
+        function hideScreens() {
+            document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+            document.getElementById('main-screen').style.display = 'block';
         }
 
         function contactOwner() {
