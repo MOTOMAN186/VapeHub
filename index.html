@@ -8,6 +8,9 @@
         body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 0; margin: 0; overflow-x: hidden; }
         h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-top: 20px; }
         
+        /* Кнопка Назад */
+        .back-btn-top { position: absolute; top: 20px; left: 15px; background: #333; color: white; border: 1px solid #444; padding: 8px 12px; border-radius: 10px; font-size: 14px; cursor: pointer; z-index: 110; }
+
         .categories { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
         .cat-btn { background: #252525; color: white; border: 1px solid #333; padding: 8px 15px; border-radius: 20px; white-space: nowrap; font-size: 14px; cursor: pointer; }
@@ -25,7 +28,7 @@
 
         #cart-fab { position: fixed; bottom: 20px; right: 20px; background: #ff4e00; color: white; padding: 15px 20px; border-radius: 30px; border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; display: none; z-index: 99; }
         
-        .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+        .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 60px 20px 20px 20px; box-sizing: border-box; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: #252525; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #333; }
         .total-row { font-size: 20px; font-weight: bold; margin: 20px 0; text-align: right; border-top: 1px solid #333; padding-top: 10px; }
         
@@ -37,7 +40,6 @@
         
         .final-btn { background: #ff4e00; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
         .secondary-btn { background: #0088cc; }
-        .back-link { display: block; margin: 15px 0; color: gray; text-decoration: none; font-size: 14px; cursor: pointer; }
         .important-note { color: #ffcc00; font-size: 13px; margin: 10px 0; font-weight: bold; }
     </style>
 </head>
@@ -58,26 +60,21 @@
 
         <div class="container" id="product-list">
             <div class="item" data-cat="device" data-id="101"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><div class="controls" id="controls-101"><button class="buy-btn" onclick="addToCart(101, 'Pasito 3', 5000)">В корзину</button></div></div>
-
             <div class="item" data-cat="liquid" data-id="201"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><div class="controls" id="controls-201"><button class="buy-btn" onclick="addToCart(201, 'HOTSPOT', 500)">В корзину</button></div></div>
             <div class="item" data-cat="liquid" data-id="202"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><div class="controls" id="controls-202"><button class="buy-btn" onclick="addToCart(202, 'АЧОНЕТ?', 450)">В корзину</button></div></div>
             <div class="item" data-cat="liquid" data-id="203"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><div class="controls" id="controls-203"><button class="buy-btn" onclick="addToCart(203, 'Монашка', 600)">В корзину</button></div></div>
-
             <div class="item" data-cat="disposable" data-id="301"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><div class="controls" id="controls-301"><button class="buy-btn" onclick="addToCart(301, 'Lost Mary Device', 1690)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="302"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><div class="controls" id="controls-302"><button class="buy-btn" onclick="addToCart(302, 'Lost Mary Cartridges', 1100)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="303"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><div class="controls" id="controls-303"><button class="buy-btn" onclick="addToCart(303, 'Waka 10k', 1690)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="304"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><div class="controls" id="controls-304"><button class="buy-btn" onclick="addToCart(304, 'Waka 20k', 2290)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="305"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><div class="controls" id="controls-305"><button class="buy-btn" onclick="addToCart(305, 'Waka 25k', 2490)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="306"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><div class="controls" id="controls-306"><button class="buy-btn" onclick="addToCart(306, 'Pafos 20k', 2590)">В корзину</button></div></div>
-
             <div class="item" data-cat="coil" data-id="401"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><div class="controls" id="controls-401"><button class="buy-btn" onclick="addToCart(401, 'Испаритель Pasito/Knight', 350)">В корзину</button></div></div>
             <div class="item" data-cat="coil" data-id="402"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><div class="controls" id="controls-402"><button class="buy-btn" onclick="addToCart(402, 'Картридж XROS', 350)">В корзину</button></div></div>
-
             <div class="item" data-cat="snus" data-id="501"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><div class="controls" id="controls-501"><button class="buy-btn" onclick="addToCart(501, 'Ice cool', 500)">В корзину</button></div></div>
             <div class="item" data-cat="snus" data-id="502"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><div class="controls" id="controls-502"><button class="buy-btn" onclick="addToCart(502, 'Velo', 500)">В корзину</button></div></div>
             <div class="item" data-cat="snus" data-id="503"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><div class="controls" id="controls-503"><button class="buy-btn" onclick="addToCart(503, 'Kasta', 500)">В корзину</button></div></div>
             <div class="item" data-cat="snus" data-id="504"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><div class="controls" id="controls-504"><button class="buy-btn" onclick="addToCart(504, 'Corvus', 500)">В корзину</button></div></div>
-
             <div class="item" data-cat="cotton" data-id="601"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><div class="controls" id="controls-601"><button class="buy-btn" onclick="addToCart(601, 'Ватки Loop', 300)">В корзину</button></div></div>
         </div>
     </div>
@@ -85,23 +82,24 @@
     <button id="cart-fab" onclick="showCart()">🛒 Корзина: <span id="cart-count">0</span></button>
 
     <div id="cart-screen" class="screen">
+        <button class="back-btn-top" onclick="hideScreens()">⬅ Назад</button>
         <h1>ТВОЯ КОРЗИНА</h1>
         <p class="important-note">📸 Сделайте скриншот этого экрана перед оплатой!</p>
         <div id="cart-items-list"></div>
         <div class="total-row">ИТОГО: <span id="cart-total-sum">0</span> ₽</div>
         <button class="final-btn" onclick="checkout()">ОФОРМИТЬ ЗАКАЗ</button>
-        <span class="back-link" onclick="hideScreens()">⬅ Вернуться к покупкам</span>
     </div>
 
     <div id="pay-select-screen" class="screen">
+        <button class="back-btn-top" onclick="showCart()">⬅ Назад</button>
         <h1>СПОСОБ ОПЛАТЫ</h1>
         <div class="pay-option" onclick="processPayment('tbank')"><h3>💳 Карта Т-Банк</h3><p>Быстрый перевод через приложение</p></div>
         <div class="pay-option" onclick="processPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата через любой банк</p></div>
         <div class="pay-option" onclick="processPayment('manual')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
-        <span class="back-link" onclick="showCart()">⬅ Назад в корзину</span>
     </div>
 
     <div id="payment-details-screen" class="screen">
+        <button class="back-btn-top" onclick="document.getElementById('payment-details-screen').style.display='none'; document.getElementById('pay-select-screen').style.display='block';">⬅ Назад</button>
         <h1 id="pay-title">ОПЛАТА</h1>
         <div id="card-details" style="display:none;"><div class="check" id="check-info"></div></div>
         <div id="sbp-details" style="display:none;">
@@ -146,6 +144,7 @@
 
         function updateUI(id) {
             const container = document.getElementById(`controls-${id}`);
+            if (!container) return;
             const count = cart[id] ? cart[id].count : 0;
             if (count > 0) {
                 container.innerHTML = `<button class="count-btn" onclick="changeCount(${id}, -1)">−</button><span class="count-val">${count}</span><button class="count-btn" onclick="changeCount(${id}, 1)">+</button>`;
