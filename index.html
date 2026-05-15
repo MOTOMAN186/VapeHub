@@ -8,7 +8,6 @@
         body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding: 0; margin: 0; overflow-x: hidden; }
         h1 { color: #ff4e00; font-size: 22px; text-transform: uppercase; margin-top: 20px; }
         
-        /* Кнопка Назад */
         .back-btn-top { position: absolute; top: 20px; left: 15px; background: #333; color: white; border: 1px solid #444; padding: 8px 12px; border-radius: 10px; font-size: 14px; cursor: pointer; z-index: 110; }
 
         .categories { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; margin-bottom: 20px; scrollbar-width: none; }
@@ -47,7 +46,6 @@
 
     <div id="main-screen">
         <h1>VAPE HUB SURGUT</h1>
-        
         <div class="categories">
             <div class="cat-btn active" onclick="filterCategory('all', this)">Все</div>
             <div class="cat-btn" onclick="filterCategory('device', this)">Устройства</div>
@@ -84,7 +82,7 @@
     <div id="cart-screen" class="screen">
         <button class="back-btn-top" onclick="hideScreens()">⬅ Назад</button>
         <h1>ТВОЯ КОРЗИНА</h1>
-        <p class="important-note">📸 Сделайте скриншот этого экрана перед оплатой!</p>
+        <p class="important-note">📸 Сделайте скриншот перед оплатой!</p>
         <div id="cart-items-list"></div>
         <div class="total-row">ИТОГО: <span id="cart-total-sum">0</span> ₽</div>
         <button class="final-btn" onclick="checkout()">ОФОРМИТЬ ЗАКАЗ</button>
@@ -93,46 +91,42 @@
     <div id="pay-select-screen" class="screen">
         <button class="back-btn-top" onclick="showCart()">⬅ Назад</button>
         <h1>СПОСОБ ОПЛАТЫ</h1>
-        <div class="pay-option" onclick="processPayment('tbank')"><h3>💳 Карта Т-Банк</h3><p>Быстрый перевод через приложение</p></div>
-        <div class="pay-option" onclick="processPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Оплата через любой банк</p></div>
-        <div class="pay-option" onclick="processPayment('manual')"><h3>📝 По реквизитам</h3><p>Перевод по номеру телефона</p></div>
+        <div class="pay-option" onclick="processPayment('tbank')"><h3>💳 Карта Т-Банк</h3><p>Перевод через приложение</p></div>
+        <div class="pay-option" onclick="processPayment('sbp')"><h3>🌀 СБП (QR-код)</h3><p>Любой банк</p></div>
+        <div class="pay-option" onclick="processPayment('manual')"><h3>📝 По реквизитам</h3><p>По номеру телефона</p></div>
     </div>
 
     <div id="payment-details-screen" class="screen">
         <button class="back-btn-top" onclick="document.getElementById('payment-details-screen').style.display='none'; document.getElementById('pay-select-screen').style.display='block';">⬅ Назад</button>
-        <h1 id="pay-title">ОПЛАТА</h1>
+        <h1>ОПЛАТА</h1>
         <div id="card-details" style="display:none;"><div class="check" id="check-info"></div></div>
         <div id="sbp-details" style="display:none;">
-            <p>Отсканируйте QR:</p>
+            <p>QR для сканирования:</p>
             <div class="qr-img"><img src="IMG_2488.jpeg"></div>
             <p>Сумма: <b id="qr-sum"></b> ₽</p>
         </div>
-        <p class="important-note">📸 Не забудьте сделать скриншот чека!</p>
         <button class="final-btn secondary-btn" onclick="showFinal()">Я ОПЛАТИЛ(А)</button>
     </div>
 
     <div id="final-screen" class="screen">
-        <h1>ЗАКАЗ ПРИНЯТ!</h1>
-        <div class="check">✅ Заказ сохранен!
+        <h1>ЗАКАЗ ГОТОВ!</h1>
+        <div class="check">✅ Оплата произведена.
             
-<b style="color:#ff4e00;">ВАЖНО:</b>
-1. Сделайте скриншот корзины.
-2. Сделайте скриншот чека об оплате.
-3. Отправьте оба скриншота продавцу.</div>
-        <button class="final-btn secondary-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТЫ</button>
+Теперь нажми на кнопку ниже. В чате уже будет готов список твоих товаров — просто прикрепи скриншоты чека и корзины и отправь сообщение!</div>
+        <button class="final-btn secondary-btn" onclick="contactOwner()">ОТПРАВИТЬ ДАННЫЕ</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
         let cart = {}; 
+        window.userAddr = "";
 
         function filterCategory(cat, btn) {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.querySelectorAll('.item').forEach(item => {
-                if (cat === 'all' || item.getAttribute('data-cat') === cat) item.style.display = 'block';
-                else item.style.display = 'none';
+                item.style.display = (cat === 'all' || item.getAttribute('data-cat') === cat) ? 'block' : 'none';
             });
         }
 
@@ -198,11 +192,8 @@
 
         function processPayment(type) {
             let totalSum = 0;
-            let orderText = "";
-            for (let id in cart) {
-                totalSum += cart[id].price * cart[id].count;
-                orderText += `• ${cart[id].name} (${cart[id].count} шт.)\n`;
-            }
+            for (let id in cart) totalSum += cart[id].price * cart[id].count;
+            
             if (type === 'tbank') {
                 tg.openLink("https://tbank.ru/cf/3DlhjJSRc0H");
                 showFinal();
@@ -212,8 +203,9 @@
             document.getElementById('payment-details-screen').style.display = 'block';
             document.getElementById('card-details').style.display = type === 'manual' ? 'block' : 'none';
             document.getElementById('sbp-details').style.display = type === 'sbp' ? 'block' : 'none';
+            
             if (type === 'manual') {
-                document.getElementById('check-info').innerText = `📦 ЗАКАЗ:\n${orderText}\n💰 ИТОГО: ${totalSum} ₽\n📍 АДРЕС: ${window.userAddr}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
+                document.getElementById('check-info').innerText = `💳 РЕКВИЗИТЫ:\n📱 +79222490563\n🏦 Т-Банк\n👤 Евгений Владиславович Б.\n💰 СУММА: ${totalSum} ₽`;
             } else if (type === 'sbp') {
                 document.getElementById('qr-sum').innerText = totalSum;
             }
@@ -230,8 +222,20 @@
         }
 
         function contactOwner() {
-            tg.openTelegramLink("https://t.me/MOTOMAN86_RUS"); 
-            setTimeout(() => { tg.close(); }, 500);
+            let totalSum = 0;
+            let orderText = "👋 Привет! Мой заказ в Vape Hub:\n\n";
+            for (let id in cart) {
+                totalSum += cart[id].price * cart[id].count;
+                orderText += `▫️ ${cart[id].name} — ${cart[id].count} шт.\n`;
+            }
+            orderText += `\n💰 Итого: ${totalSum} ₽\n📍 Адрес: ${window.userAddr}\n\n🖼 Прикрепил скриншоты чека и корзины!`;
+            
+            // Кодируем текст для ссылки
+            const encodedText = encodeURIComponent(orderText);
+            const url = `https://t.me/MOTOMAN86_RUS?text=${encodedText}`;
+            
+            tg.openTelegramLink(url);
+            setTimeout(() => { tg.close(); }, 1000);
         }
     </script>
 </body>
