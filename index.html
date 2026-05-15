@@ -39,6 +39,7 @@
         
         .final-btn { background: #ff4e00; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
         .secondary-btn { background: #0088cc; }
+        .important-note { color: #ffcc00; font-size: 13px; margin: 10px 0; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -51,31 +52,28 @@
             <div class="cat-btn" onclick="filterCategory('liquid', this)">Жидкости</div>
             <div class="cat-btn" onclick="filterCategory('disposable', this)">Одноразки</div>
             <div class="cat-btn" onclick="filterCategory('coil', this)">Испарители</div>
-            <div class="cat-btn" onclick="filterCategory('cotton', this)">Ватки</div>
             <div class="cat-btn" onclick="filterCategory('snus', this)">Снюс</div>
+            <div class="cat-btn" onclick="filterCategory('cotton', this)">Ватки</div>
         </div>
 
         <div class="container" id="product-list">
-            <div class="item" data-cat="device" data-id="102"><img src="IMG_2504.png"><div>Aegis Hero 5</div><div class="price">5000 ₽</div><div class="controls" id="controls-102"><button class="buy-btn" onclick="addToCart(102, 'Aegis Hero 5', 5000)">В корзину</button></div></div>
-            <div class="item" data-cat="device" data-id="101"><img src="IMG_2448.webp"><div>Pasito 3</div><div class="price">5000 ₽</div><div class="controls" id="controls-101"><button class="buy-btn" onclick="addToCart(101, 'Pasito 3', 5000)">В корзину</button></div></div>
-
-            <div class="item" data-cat="liquid" data-id="203"><img src="IMG_2505.webp"><div>Skala</div><div class="price">400 ₽</div><div class="controls" id="controls-203"><button class="buy-btn" onclick="addToCart(203, 'Skala', 400)">В корзину</button></div></div>
-            <div class="item" data-cat="liquid" data-id="201"><img src="IMG_2502.jpeg"><div>Rick and Morty</div><div class="price">500 ₽</div><div class="controls" id="controls-201"><button class="buy-btn" onclick="addToCart(201, 'Rick and Morty', 500)">В корзину</button></div></div>
-            <div class="item" data-cat="liquid" data-id="202"><img src="IMG_2503.jpeg"><div>Анархия v.2</div><div class="price">500 ₽</div><div class="controls" id="controls-202"><button class="buy-btn" onclick="addToCart(202, 'Анархия v.2', 500)">В корзину</button></div></div>
-
-            <div class="item" data-cat="disposable" data-id="310"><img src="IMG_2509.jpeg"><div>Bubble Mon 30k</div><div class="price">2500 ₽</div><div class="controls" id="controls-310"><button class="buy-btn" onclick="addToCart(310, 'Bubble Mon 30k', 2500)">В корзину</button></div></div>
-            <div class="item" data-cat="disposable" data-id="309"><img src="IMG_2508.jpeg"><div>Aerovibe 20k</div><div class="price">2400 ₽</div><div class="controls" id="controls-309"><button class="buy-btn" onclick="addToCart(309, 'Aerovibe 20k', 2400)">В корзину</button></div></div>
-            <div class="item" data-cat="disposable" data-id="308"><img src="IMG_2507.webp"><div>Boss Bar</div><div class="price">1500 ₽</div><div class="controls" id="controls-308"><button class="buy-btn" onclick="addToCart(308, 'Boss Bar', 1500)">В корзину</button></div></div>
-            <div class="item" data-cat="disposable" data-id="307"><img src="IMG_2501.jpeg"><div>Puffmi Flora</div><div class="price">2200 ₽</div><div class="controls" id="controls-307"><button class="buy-btn" onclick="addToCart(307, 'Puffmi Flora', 2200)">В корзину</button></div></div>
+            <div class="item" data-cat="device" data-id="101"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><div class="controls" id="controls-101"><button class="buy-btn" onclick="addToCart(101, 'Pasito 3', 5000)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="201"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><div class="controls" id="controls-201"><button class="buy-btn" onclick="addToCart(201, 'HOTSPOT', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="202"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><div class="controls" id="controls-202"><button class="buy-btn" onclick="addToCart(202, 'АЧОНЕТ?', 450)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="203"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><div class="controls" id="controls-203"><button class="buy-btn" onclick="addToCart(203, 'Монашка', 600)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="301"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><div class="controls" id="controls-301"><button class="buy-btn" onclick="addToCart(301, 'Lost Mary Device', 1690)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="302"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><div class="controls" id="controls-302"><button class="buy-btn" onclick="addToCart(302, 'Lost Mary Cartridges', 1100)">В корзину</button></div></div>
             <div class="item" data-cat="disposable" data-id="303"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><div class="controls" id="controls-303"><button class="buy-btn" onclick="addToCart(303, 'Waka 10k', 1690)">В корзину</button></div></div>
-
-            <div class="item" data-cat="coil" data-id="402"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">400 ₽</div><div class="controls" id="controls-402"><button class="buy-btn" onclick="addToCart(402, 'Картридж XROS', 400)">В корзину</button></div></div>
-
-            <div class="item" data-cat="cotton" data-id="403"><img src="IMG_2492.jpeg"><div>Cotton Bacon Prime</div><div class="price">600 ₽</div><div class="controls" id="controls-403"><button class="buy-btn" onclick="addToCart(403, 'Cotton Bacon', 600)">В корзину</button></div></div>
-
-            <div class="item" data-cat="snus" data-id="505"><img src="IMG_2500.jpeg"><div>Dry Most Armageddon</div><div class="price">500 ₽</div><div class="controls" id="controls-505"><button class="buy-btn" onclick="addToCart(505, 'Dry Most', 500)">В корзину</button></div></div>
-            <div class="item" data-cat="snus" data-id="502"><img src="IMG_2496.png"><div>VELO Tropical Mango</div><div class="price">550 ₽</div><div class="controls" id="controls-502"><button class="buy-btn" onclick="addToCart(502, 'VELO Mango', 550)">В корзину</button></div></div>
-            <div class="item" data-cat="snus" data-id="601"><img src="IMG_2495.webp"><div>Полоски LOOP</div><div class="price">600 ₽</div><div class="controls" id="controls-601"><button class="buy-btn" onclick="addToCart(601, 'LOOP', 600)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="304"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><div class="controls" id="controls-304"><button class="buy-btn" onclick="addToCart(304, 'Waka 20k', 2290)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="305"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><div class="controls" id="controls-305"><button class="buy-btn" onclick="addToCart(305, 'Waka 25k', 2490)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="306"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><div class="controls" id="controls-306"><button class="buy-btn" onclick="addToCart(306, 'Pafos 20k', 2590)">В корзину</button></div></div>
+            <div class="item" data-cat="coil" data-id="401"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><div class="controls" id="controls-401"><button class="buy-btn" onclick="addToCart(401, 'Испаритель Pasito/Knight', 350)">В корзину</button></div></div>
+            <div class="item" data-cat="coil" data-id="402"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><div class="controls" id="controls-402"><button class="buy-btn" onclick="addToCart(402, 'Картридж XROS', 350)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="501"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><div class="controls" id="controls-501"><button class="buy-btn" onclick="addToCart(501, 'Ice cool', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="502"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><div class="controls" id="controls-502"><button class="buy-btn" onclick="addToCart(502, 'Velo', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="503"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><div class="controls" id="controls-503"><button class="buy-btn" onclick="addToCart(503, 'Kasta', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="504"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><div class="controls" id="controls-504"><button class="buy-btn" onclick="addToCart(504, 'Corvus', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="cotton" data-id="601"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><div class="controls" id="controls-601"><button class="buy-btn" onclick="addToCart(601, 'Ватки Loop', 300)">В корзину</button></div></div>
         </div>
     </div>
 
@@ -84,6 +82,7 @@
     <div id="cart-screen" class="screen">
         <button class="back-btn-top" onclick="hideScreens()">⬅ Назад</button>
         <h1>ТВОЯ КОРЗИНА</h1>
+        <p class="important-note">📸 Сделайте скриншот перед оплатой!</p>
         <div id="cart-items-list"></div>
         <div class="total-row">ИТОГО: <span id="cart-total-sum">0</span> ₽</div>
         <button class="final-btn" onclick="checkout()">ОФОРМИТЬ ЗАКАЗ</button>
@@ -111,7 +110,9 @@
 
     <div id="final-screen" class="screen">
         <h1>ЗАКАЗ ГОТОВ!</h1>
-        <div class="check">✅ Оплата произведена. Нажми кнопку ниже, чтобы отправить детали заказа продавцу в личку.</div>
+        <div class="check">✅ Оплата произведена.
+            
+Теперь нажми на кнопку ниже. В чате уже будет готов список твоих товаров — просто прикрепи скриншоты чека и корзины и отправь сообщение!</div>
         <button class="final-btn secondary-btn" onclick="contactOwner()">ОТПРАВИТЬ ДАННЫЕ</button>
     </div>
 
@@ -192,6 +193,7 @@
         function processPayment(type) {
             let totalSum = 0;
             for (let id in cart) totalSum += cart[id].price * cart[id].count;
+            
             if (type === 'tbank') {
                 tg.openLink("https://tbank.ru/cf/3DlhjJSRc0H");
                 showFinal();
@@ -201,6 +203,7 @@
             document.getElementById('payment-details-screen').style.display = 'block';
             document.getElementById('card-details').style.display = type === 'manual' ? 'block' : 'none';
             document.getElementById('sbp-details').style.display = type === 'sbp' ? 'block' : 'none';
+            
             if (type === 'manual') {
                 document.getElementById('check-info').innerText = `💳 РЕКВИЗИТЫ:\n📱 +79222490563\n🏦 Т-Банк\n👤 Евгений Владиславович Б.\n💰 СУММА: ${totalSum} ₽`;
             } else if (type === 'sbp') {
@@ -225,8 +228,12 @@
                 totalSum += cart[id].price * cart[id].count;
                 orderText += `▫️ ${cart[id].name} — ${cart[id].count} шт.\n`;
             }
-            orderText += `\n💰 Итого: ${totalSum} ₽\n📍 Адрес: ${window.userAddr}\n\n🖼 Скриншоты чека прилагаю!`;
-            const url = `https://t.me/MOTOMAN86_RUS?text=${encodeURIComponent(orderText)}`;
+            orderText += `\n💰 Итого: ${totalSum} ₽\n📍 Адрес: ${window.userAddr}\n\n🖼 Прикрепил скриншоты чека и корзины!`;
+            
+            // Кодируем текст для ссылки
+            const encodedText = encodeURIComponent(orderText);
+            const url = `https://t.me/MOTOMAN86_RUS?text=${encodedText}`;
+            
             tg.openTelegramLink(url);
             setTimeout(() => { tg.close(); }, 1000);
         }
