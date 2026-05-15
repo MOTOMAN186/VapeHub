@@ -23,24 +23,21 @@
         .count-btn { background: #333; color: white; border: 1px solid #444; width: 40px; height: 40px; border-radius: 10px; font-size: 20px; cursor: pointer; }
         .count-val { font-size: 18px; font-weight: bold; min-width: 30px; }
 
-        #cart-fab { position: fixed; bottom: 20px; right: 20px; background: #ff4e00; color: white; padding: 15px 20px; border-radius: 30px; border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; display: none; z-index: 99; transition: transform 0.2s; }
+        #cart-fab { position: fixed; bottom: 20px; right: 20px; background: #ff4e00; color: white; padding: 15px 20px; border-radius: 30px; border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; display: none; z-index: 99; }
         
         .screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 100; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: #252525; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #333; }
         .total-row { font-size: 20px; font-weight: bold; margin: 20px 0; text-align: right; border-top: 1px solid #333; padding-top: 10px; }
         
         .check { background: #252525; padding: 15px; border-radius: 15px; border: 2px dashed #ff4e00; margin-top: 10px; text-align: left; white-space: pre-wrap; font-family: monospace; font-size: 14px; }
         .pay-option { background: #333; padding: 15px; border-radius: 15px; margin-bottom: 12px; cursor: pointer; border: 1px solid #444; text-align: left; }
         .pay-option h3 { margin: 0 0 5px 0; color: #ff4e00; }
-        
         .qr-img { width: 200px; height: 200px; background: white; margin: 20px auto; border-radius: 10px; padding: 10px; }
         .qr-img img { width: 100%; height: 100%; object-fit: contain; }
         
         .final-btn { background: #ff4e00; color: white; border: none; padding: 18px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
         .secondary-btn { background: #0088cc; }
         .back-link { display: block; margin: 15px 0; color: gray; text-decoration: none; font-size: 14px; cursor: pointer; }
-        
         .important-note { color: #ffcc00; font-size: 13px; margin: 10px 0; font-weight: bold; }
     </style>
 </head>
@@ -60,17 +57,28 @@
         </div>
 
         <div class="container" id="product-list">
-            <div class="item" data-cat="snus" data-id="1"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><div class="controls" id="controls-1"><button class="buy-btn" onclick="addToCart(1, 'Ice cool', 500)">В корзину</button></div></div>
-            <div class="item" data-cat="snus" data-id="2"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><div class="controls" id="controls-2"><button class="buy-btn" onclick="addToCart(2, 'Velo', 500)">В корзину</button></div></div>
-            <div class="item" data-cat="snus" data-id="10"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><div class="controls" id="controls-10"><button class="buy-btn" onclick="addToCart(10, 'Kasta', 500)">В корзину</button></div></div>
-            <div class="item" data-cat="snus" data-id="11"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><div class="controls" id="controls-11"><button class="buy-btn" onclick="addToCart(11, 'Corvus', 500)">В корзину</button></div></div>
-            
-            <div class="item" data-cat="cotton" data-id="4"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><div class="controls" id="controls-4"><button class="buy-btn" onclick="addToCart(4, 'Ватки Loop', 300)">В корзину</button></div></div>
+            <div class="item" data-cat="device" data-id="101"><img src="IMG_2448.webp"><div>Smoant Pasito 3</div><div class="price">5000 ₽</div><div class="controls" id="controls-101"><button class="buy-btn" onclick="addToCart(101, 'Pasito 3', 5000)">В корзину</button></div></div>
 
-            <div class="item" data-cat="coil" data-id="3"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><div class="controls" id="controls-3"><button class="buy-btn" onclick="addToCart(3, 'Испаритель Pasito/Knight', 350)">В корзину</button></div></div>
-            <div class="item" data-cat="coil" data-id="12"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><div class="controls" id="controls-12"><button class="buy-btn" onclick="addToCart(12, 'Картридж XROS', 350)">В корзину</button></div></div>
-            
-            <div class="item" data-cat="liquid" data-id="5"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><div class="controls" id="controls-5"><button class="buy-btn" onclick="addToCart(5, 'HOTSPOT', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="201"><img src="IMG_2450.jpeg"><div>HOTSPOT</div><div class="price">500 ₽</div><div class="controls" id="controls-201"><button class="buy-btn" onclick="addToCart(201, 'HOTSPOT', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="202"><img src="IMG_2449.jpeg"><div>АЧОНЕТ?</div><div class="price">450 ₽</div><div class="controls" id="controls-202"><button class="buy-btn" onclick="addToCart(202, 'АЧОНЕТ?', 450)">В корзину</button></div></div>
+            <div class="item" data-cat="liquid" data-id="203"><img src="IMG_2445.webp"><div>Монашка</div><div class="price">600 ₽</div><div class="controls" id="controls-203"><button class="buy-btn" onclick="addToCart(203, 'Монашка', 600)">В корзину</button></div></div>
+
+            <div class="item" data-cat="disposable" data-id="301"><img src="IMG_2477.jpeg"><div>Lost Mary Device</div><div class="price">1690 ₽</div><div class="controls" id="controls-301"><button class="buy-btn" onclick="addToCart(301, 'Lost Mary Device', 1690)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="302"><img src="IMG_2476.jpeg"><div>Lost Mary Cartridges</div><div class="price">1100 ₽</div><div class="controls" id="controls-302"><button class="buy-btn" onclick="addToCart(302, 'Lost Mary Cartridges', 1100)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="303"><img src="IMG_2451.jpeg"><div>Waka 10k</div><div class="price">1690 ₽</div><div class="controls" id="controls-303"><button class="buy-btn" onclick="addToCart(303, 'Waka 10k', 1690)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="304"><img src="IMG_2452.jpeg"><div>Waka 20k</div><div class="price">2290 ₽</div><div class="controls" id="controls-304"><button class="buy-btn" onclick="addToCart(304, 'Waka 20k', 2290)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="305"><img src="IMG_2453.webp"><div>Waka 25k</div><div class="price">2490 ₽</div><div class="controls" id="controls-305"><button class="buy-btn" onclick="addToCart(305, 'Waka 25k', 2490)">В корзину</button></div></div>
+            <div class="item" data-cat="disposable" data-id="306"><img src="IMG_2474.jpeg"><div>Pafos 20k</div><div class="price">2590 ₽</div><div class="controls" id="controls-306"><button class="buy-btn" onclick="addToCart(306, 'Pafos 20k', 2590)">В корзину</button></div></div>
+
+            <div class="item" data-cat="coil" data-id="401"><img src="IMG_2492.jpeg"><div>Испаритель Pasito/Knight</div><div class="price">350 ₽</div><div class="controls" id="controls-401"><button class="buy-btn" onclick="addToCart(401, 'Испаритель Pasito/Knight', 350)">В корзину</button></div></div>
+            <div class="item" data-cat="coil" data-id="402"><img src="IMG_2491.jpeg"><div>Картридж XROS</div><div class="price">350 ₽</div><div class="controls" id="controls-402"><button class="buy-btn" onclick="addToCart(402, 'Картридж XROS', 350)">В корзину</button></div></div>
+
+            <div class="item" data-cat="snus" data-id="501"><img src="IMG_2497.png"><div>Ice cool</div><div class="price">500 ₽</div><div class="controls" id="controls-501"><button class="buy-btn" onclick="addToCart(501, 'Ice cool', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="502"><img src="IMG_2496.png"><div>Velo</div><div class="price">500 ₽</div><div class="controls" id="controls-502"><button class="buy-btn" onclick="addToCart(502, 'Velo', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="503"><img src="IMG_2494.jpeg"><div>Kasta</div><div class="price">500 ₽</div><div class="controls" id="controls-503"><button class="buy-btn" onclick="addToCart(503, 'Kasta', 500)">В корзину</button></div></div>
+            <div class="item" data-cat="snus" data-id="504"><img src="IMG_2493.png"><div>Corvus</div><div class="price">500 ₽</div><div class="controls" id="controls-504"><button class="buy-btn" onclick="addToCart(504, 'Corvus', 500)">В корзину</button></div></div>
+
+            <div class="item" data-cat="cotton" data-id="601"><img src="IMG_2495.webp"><div>Ватки Loop</div><div class="price">300 ₽</div><div class="controls" id="controls-601"><button class="buy-btn" onclick="addToCart(601, 'Ватки Loop', 300)">В корзину</button></div></div>
         </div>
     </div>
 
@@ -107,21 +115,18 @@
 
     <div id="final-screen" class="screen">
         <h1>ЗАКАЗ ПРИНЯТ!</h1>
-        <div class="check">
-✅ Заказ сохранен!
+        <div class="check">✅ Заказ сохранен!
             
 <b style="color:#ff4e00;">ВАЖНО:</b>
-1. Сделайте скриншот этого экрана (или корзины).
+1. Сделайте скриншот корзины.
 2. Сделайте скриншот чека об оплате.
-3. Отправьте оба скриншота продавцу.
-        </div>
+3. Отправьте оба скриншота продавцу.</div>
         <button class="final-btn secondary-btn" onclick="contactOwner()">ОТПРАВИТЬ СКРИНШОТЫ</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
-
         let cart = {}; 
 
         function filterCategory(cat, btn) {
@@ -165,10 +170,8 @@
             let totalCount = 0;
             for (let id in cart) totalCount += cart[id].count;
             const fab = document.getElementById('cart-fab');
-            if (totalCount > 0) {
-                fab.style.display = 'block';
-                document.getElementById('cart-count').innerText = totalCount;
-            } else fab.style.display = 'none';
+            fab.style.display = totalCount > 0 ? 'block' : 'none';
+            document.getElementById('cart-count').innerText = totalCount;
         }
 
         function showCart() {
@@ -208,13 +211,11 @@
             }
             document.getElementById('pay-select-screen').style.display = 'none';
             document.getElementById('payment-details-screen').style.display = 'block';
-            document.getElementById('card-details').style.display = 'none';
-            document.getElementById('sbp-details').style.display = 'none';
+            document.getElementById('card-details').style.display = type === 'manual' ? 'block' : 'none';
+            document.getElementById('sbp-details').style.display = type === 'sbp' ? 'block' : 'none';
             if (type === 'manual') {
-                document.getElementById('card-details').style.display = 'block';
                 document.getElementById('check-info').innerText = `📦 ЗАКАЗ:\n${orderText}\n💰 ИТОГО: ${totalSum} ₽\n📍 АДРЕС: ${window.userAddr}\n━━━━━━━━━━━━━━━\n📱 НОМЕР: +79222490563\n🏦 БАНК: Т-Банк\n👤 Евгений Владиславович Б.`;
             } else if (type === 'sbp') {
-                document.getElementById('sbp-details').style.display = 'block';
                 document.getElementById('qr-sum').innerText = totalSum;
             }
         }
